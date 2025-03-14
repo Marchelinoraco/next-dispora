@@ -66,7 +66,7 @@ const About = () => {
                 DR. Fietber S. Raco, M.Si
               </h2>
               <h3 className="relative my-6 text-xl font-bold text-black dark:text-white xl:text-3xl">
-                Biodata
+                Riwayat Pendidikan
               </h3>
               <div className="mt-7.5 flex items-center gap-5">
                 <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
@@ -76,7 +76,8 @@ const About = () => {
                 </div>
                 <div className="w-3/4">
                   <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
-                    Peningkatan kualitas pemuda Minahasa Selatan.
+                    SD GMIM 1 Kakaskasen, SMP NEGERI 1 Tomohon, SMA Kristen
+                    Tomohon.
                   </h3>
                 </div>
               </div>
@@ -88,12 +89,41 @@ const About = () => {
                 </div>
                 <div className="w-3/4">
                   <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
-                    Penguatan ekonomi yang bertumpu pada industri pertanian,
-                    perikanan, pariwisata, dan jasa.
+                    FPMIPA Pendidikan Matematika IKIP Manado/Unima, Pascasarjana
+                    Unsrat Program Studi Perencanaan Pembangunan Wilayah,
+                    Pascasarjana Universitas Negeri Jakarta Program Studi
+                    Penelitian dan Evaluasi Pendidikan.
                   </h3>
                 </div>
               </div>
-
+              <h3 className="relative my-6 text-xl font-bold text-black dark:text-white xl:text-3xl">
+                Riwayat Pekerjaan
+              </h3>
+              <div className="mt-7.5 flex items-center gap-5">
+                <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+                  <p className="text-metatitle2 font-semibold text-black dark:text-white">
+                    01
+                  </p>
+                </div>
+                <div className="w-3/4">
+                  <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
+                    Pernah Menjadi Guru SMP SMA Tahun 1989-1995 (Tenaga Tidak
+                    Tetap).
+                  </h3>
+                </div>
+              </div>
+              <div className="mt-7.5 flex items-center gap-5">
+                <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+                  <p className="text-metatitle2 font-semibold text-black dark:text-white">
+                    02
+                  </p>
+                </div>
+                <div className="w-3/4">
+                  <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
+                    Pegawai Negeri Sipil Tahun 1995-2003 (Guru SMP).
+                  </h3>
+                </div>
+              </div>
               <div className="mt-7.5 flex items-center gap-5">
                 <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
                   <p className="text-metatitle2 font-semibold text-black dark:text-white">
@@ -102,7 +132,8 @@ const About = () => {
                 </div>
                 <div className="w-3/4">
                   <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
-                    Pembangunan infrastruktur dan perluasan konektivitas.
+                    Pejabat Struktural eselon IV Kepala Seksi Dikdas Dinas
+                    Dikpora Minsel Tahun 2003-2007.
                   </h3>
                 </div>
               </div>
@@ -114,7 +145,8 @@ const About = () => {
                 </div>
                 <div className="w-3/4">
                   <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
-                    Pembangunan daerah yang berkelanjutan.
+                    Pejabat Struktural eselon III Kepala Bidang Dikdas Dinas
+                    Dikpora Minsel 2007-2016.
                   </h3>
                 </div>
               </div>
@@ -126,8 +158,44 @@ const About = () => {
                 </div>
                 <div className="w-3/4">
                   <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
-                    Pemerintahan yang baik dan bersih didukung oleh sinergitas
-                    antar daerah.
+                    Pejabat Struktural eselon IIIA Sekretaris Dinas Dikpora
+                    Minsel 2016-2019.
+                  </h3>
+                </div>
+              </div>
+              <div className="mt-7.5 flex items-center gap-5">
+                <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+                  <p className="text-metatitle2 font-semibold text-black dark:text-white">
+                    06
+                  </p>
+                </div>
+                <div className="w-3/4">
+                  <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
+                    Pelaksana Tugas Kepala Dinas Dikpora 2016-2019.
+                  </h3>
+                </div>
+              </div>
+              <div className="mt-7.5 flex items-center gap-5">
+                <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+                  <p className="text-metatitle2 font-semibold text-black dark:text-white">
+                    07
+                  </p>
+                </div>
+                <div className="w-3/4">
+                  <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
+                    Kepala Dinas Dikpora 2019 sampai maret 2022.
+                  </h3>
+                </div>
+              </div>
+              <div className="mt-7.5 flex items-center gap-5">
+                <div className="flex h-15 w-15 items-center justify-center rounded-[50%] border border-stroke dark:border-strokedark dark:bg-blacksection">
+                  <p className="text-metatitle2 font-semibold text-black dark:text-white">
+                    08
+                  </p>
+                </div>
+                <div className="w-3/4">
+                  <h3 className="mb-0.5 text-metatitle2 text-black dark:text-white">
+                    Kepala Dinas Dispora 2022 sampai sekarang.
                   </h3>
                 </div>
               </div>

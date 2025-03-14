@@ -77,7 +77,7 @@ const FunFact = () => {
               <h3 className="mb-2.5 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
                 Pemuda
               </h3>
-              <p className="text-lg lg:text-para2">463</p>
+              <p className="text-lg lg:text-para2">54.000</p>
             </motion.div>
             <motion.div
               variants={{
@@ -99,7 +99,7 @@ const FunFact = () => {
               <h3 className="mb-2.5 text-3xl font-bold text-black dark:text-white xl:text-sectiontitle3">
                 Cabor
               </h3>
-              <p className="text-lg lg:text-para2">10.930</p>
+              <p className="text-lg lg:text-para2">28</p>
             </motion.div>
             <motion.div
               variants={{
