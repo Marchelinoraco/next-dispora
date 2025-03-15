@@ -1,36 +1,174 @@
 "use client";
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const FormBeasiswa = () => {
-  const [hasMounted, setHasMounted] = React.useState(false);
-  React.useEffect(() => {
+  const [hasMounted, setHasMounted] = useState(false);
+  const [formData, setFormData] = useState({
+    namaLengkap: "",
+    umur: "",
+    tempatTanggalLahir: "",
+    nomorHP: "",
+    nim: "",
+    ipk: "",
+    nik: "",
+    alamat: "",
+    namaDesa: "",
+    universitas: "",
+    keterangan: "belum di periksa",
+    fakultas: "",
+    jurusan: "",
+    kecamatan: "",
+    wisuda: "",
+    yudisium: "",
+    semesterS1: "",
+    semesterS2: "",
+    semesterS3: "",
+    semesterD3: "",
+    gambar_ktp: null,
+    gambar_khs: null,
+    gambar_spbupati: null,
+    gambar_biodatareg: null,
+    gambar_pasfoto: null,
+    gambar_belumbea: null,
+    gambar_databpp: null,
+    gambar_ketpimpinan: null,
+    gambar_kartumahasiswa: null,
+    gambar_kk: null,
+    gambar_proposalakhir: null,
+  });
+
+  useEffect(() => {
     setHasMounted(true);
   }, []);
+
   if (!hasMounted) {
-    return null;
+    return <div>Loading...</div>;
   }
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle perubahan input file
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    setFormData({ ...formData, [e.target.name]: file });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // ✅ Pastikan keterangan selalu ada
+    if (!formData.keterangan) {
+      setFormData((prev) => ({ ...prev, keterangan: "belum di periksa" }));
+    }
+
+    const apiUrl = "http://217.15.171.240:4000/regprogram";
+    const data = new FormData();
+
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value) {
+        data.append(key, value);
+      }
+    });
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        body: data,
+      });
+
+      console.log("Response Status:", response.status);
+      console.log("Response Text:", await response.text());
+
+      if (!response.ok) {
+        throw new Error("Gagal mengupload data");
+      }
+
+      const result = await response.json();
+      alert("Data berhasil dikirim: " + JSON.stringify(result));
+      setFormData({
+        namaLengkap: "",
+        umur: "",
+        tempatTanggalLahir: "",
+        nomorHP: "",
+        nim: "",
+        ipk: "",
+        nik: "",
+        alamat: "",
+        namaDesa: "",
+        universitas: "",
+        keterangan: "belum di periksa",
+        fakultas: "",
+        jurusan: "",
+        kecamatan: "",
+        wisuda: "",
+        yudisium: "",
+        semesterS1: "",
+        semesterS2: "",
+        semesterS3: "",
+        semesterD3: "",
+        gambar_ktp: null,
+        gambar_khs: null,
+        gambar_spbupati: null,
+        gambar_biodatareg: null,
+        gambar_pasfoto: null,
+        gambar_belumbea: null,
+        gambar_databpp: null,
+        gambar_ketpimpinan: null,
+        gambar_kartumahasiswa: null,
+        gambar_kk: null,
+        gambar_proposalakhir: null,
+      });
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Data berhasil dikirim");
+      setFormData({
+        namaLengkap: "",
+        umur: "",
+        tempatTanggalLahir: "",
+        nomorHP: "",
+        nim: "",
+        ipk: "",
+        nik: "",
+        alamat: "",
+        namaDesa: "",
+        universitas: "",
+        keterangan: "belum di periksa",
+        fakultas: "",
+        jurusan: "",
+        kecamatan: "",
+        wisuda: "",
+        yudisium: "",
+        semesterS1: "",
+        semesterS2: "",
+        semesterS3: "",
+        semesterD3: "",
+        gambar_ktp: null,
+        gambar_khs: null,
+        gambar_spbupati: null,
+        gambar_biodatareg: null,
+        gambar_pasfoto: null,
+        gambar_belumbea: null,
+        gambar_databpp: null,
+        gambar_ketpimpinan: null,
+        gambar_kartumahasiswa: null,
+        gambar_kk: null,
+        gambar_proposalakhir: null,
+      });
+    }
+  };
 
   return (
     <>
-      {/* <!-- ===== Contact Start ===== --> */}
       <section id="support" className="px-4 md:px-8 2xl:px-0">
         <div className="relative mx-auto max-w-c-1390 px-7.5 pt-10 lg:px-15 lg:pt-15 xl:px-20 xl:pt-20">
           <div className="absolute left-0 top-0 -z-1 h-2/3 w-full rounded-lg bg-gradient-to-t from-transparent to-[#dee7ff47] dark:bg-gradient-to-t dark:to-[#252A42]"></div>
-          {/* <div className="absolute bottom-[-255px] left-0 -z-1 h-full w-full">
-            <Image
-              src="./images/shape/shape-dotted-light.svg"
-              alt="Dotted"
-              className="dark:hidden"
-              fill
-            />
-            <Image
-              src="./images/shape/shape-dotted-dark.svg"
-              alt="Dotted"
-              className="hidden dark:block"
-              fill
-            />
-          </div> */}
 
           <div className="flex flex-col-reverse flex-wrap gap-8 md:flex-row md:flex-nowrap md:justify-between xl:gap-20">
             <motion.div
@@ -55,20 +193,21 @@ const FormBeasiswa = () => {
                 Formulir Beasiswa
               </h2>
 
-              <form
-                action="https://formbold.com/s/unique_form_id"
-                method="POST"
-              >
-                <div className="mb-7.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
+              <form onSubmit={handleSubmit} method="POST">
+                <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="nama_reg"
                     placeholder="Nama Lengkap"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
-                    placeholder="Umur "
+                    name="umur_reg"
+                    placeholder="Umur"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
                 </div>
@@ -76,26 +215,34 @@ const FormBeasiswa = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="tempat_tanggal_lahir"
                     placeholder="Tempat Tanggal Lahir"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
+                    name="no_telepon"
                     placeholder="Nomor HP"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
                 </div>
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="nim"
                     placeholder="NIM"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
+                    name="IPK"
                     placeholder="IPK"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
                 </div>
@@ -103,11 +250,15 @@ const FormBeasiswa = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="nik"
+                    onChange={handleChange}
                     placeholder="NIK"
                     className="w-full border-b border-stroke bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <textarea
+                    name="alamat"
+                    onChange={handleChange}
                     placeholder="Alamat Lengkap"
                     className="w-full border-b border-stroke bg-transparent focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                   ></textarea>
@@ -116,12 +267,16 @@ const FormBeasiswa = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="desa"
                     placeholder="Nama Desa"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
+                    name="universitas"
+                    onChange={handleChange}
                     placeholder="Universitas"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
@@ -130,12 +285,16 @@ const FormBeasiswa = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <input
                     type="text"
+                    name="fakultas"
+                    onChange={handleChange}
                     placeholder="Fakultas"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
 
                   <input
                     type="text"
+                    name="jurusan"
+                    onChange={handleChange}
                     placeholder="Jurusan"
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   />
@@ -144,6 +303,7 @@ const FormBeasiswa = () => {
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
                   <select
                     name="kecamatan"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   >
                     <option>Pilih Kecamatan</option>
@@ -164,7 +324,8 @@ const FormBeasiswa = () => {
                     <option value="tatapaan">Tatapaan</option>
                   </select>
                   <select
-                    name="Wisuda"
+                    name="wisuda"
+                    onChange={handleChange}
                     className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
                   >
                     <option className="disabled">Wisuda ?</option>
@@ -174,7 +335,23 @@ const FormBeasiswa = () => {
                 </div>
 
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <select className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2">
+                  <select
+                    name="yudisium"
+                    onChange={handleChange}
+                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
+                  >
+                    <option className="disabled">yudisium ?</option>
+                    <option value="sudah">Sudah</option>
+                    <option value="belum">Belum</option>
+                  </select>
+                </div>
+
+                <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
+                  <select
+                    name="semester_s1"
+                    onChange={handleChange}
+                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
+                  >
                     <option className="disabled" value="pilihsemester">
                       Pilih semester S1 (optional)
                     </option>
@@ -182,7 +359,11 @@ const FormBeasiswa = () => {
                     <option value="semester8">semester 8</option>
                     <option value="semester10">semester 10</option>
                   </select>
-                  <select className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2">
+                  <select
+                    name="semesterS2"
+                    onChange={handleChange}
+                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
+                  >
                     <option className="disabled" value="pilihsemester">
                       Pilih semester S2 (optional)
                     </option>
@@ -192,14 +373,22 @@ const FormBeasiswa = () => {
                 </div>
 
                 <div className="mb-12.5 flex flex-col gap-7.5 lg:flex-row lg:justify-between lg:gap-14">
-                  <select className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2">
+                  <select
+                    name="semesterS3"
+                    onChange={handleChange}
+                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
+                  >
                     <option className="disabled" value="pilihsemester">
                       Pilih semester S3 (optional)
                     </option>
                     <option value="semester4">semester 4</option>
                     <option value="semester6">semester 6</option>
                   </select>
-                  <select className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2">
+                  <select
+                    name="semesterD3"
+                    onChange={handleChange}
+                    className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white lg:w-1/2"
+                  >
                     <option className="disabled" value="pilihsemester">
                       Pilih semester D3 Diploma (optional)
                     </option>
@@ -215,6 +404,7 @@ const FormBeasiswa = () => {
                     <input
                       type="file"
                       name="gambar_ktp"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -223,6 +413,7 @@ const FormBeasiswa = () => {
                     <input
                       type="file"
                       name="gambar_khs"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -233,7 +424,8 @@ const FormBeasiswa = () => {
                     <label htmlFor="">Surat Permohonan Kepada Bupati</label>
                     <input
                       type="file"
-                      name="gambar_bpp"
+                      name="gambar_spbupati"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -241,7 +433,8 @@ const FormBeasiswa = () => {
                     <label htmlFor="">Biodata Pemohon</label>
                     <input
                       type="file"
-                      name="gambar_biopemo"
+                      name="gambar_biodatareg"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -253,6 +446,7 @@ const FormBeasiswa = () => {
                     <input
                       type="file"
                       name="gambar_pasfoto"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -263,6 +457,7 @@ const FormBeasiswa = () => {
                     <input
                       type="file"
                       name="gambar_belumbea"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -275,7 +470,8 @@ const FormBeasiswa = () => {
                     </label>
                     <input
                       type="file"
-                      name="gambar_bpp"
+                      name="gambar_databpp"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -285,7 +481,8 @@ const FormBeasiswa = () => {
                     </label>
                     <input
                       type="file"
-                      name="gambar_surat"
+                      name="gambar_ketpimpinan"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -296,7 +493,8 @@ const FormBeasiswa = () => {
                     <label htmlFor="">Kartu Mahasiswa</label>
                     <input
                       type="file"
-                      name="gambar_bpp"
+                      name="gambar_kartumahasiswa"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -304,7 +502,8 @@ const FormBeasiswa = () => {
                     <label htmlFor="">Kartu Keluarga</label>
                     <input
                       type="file"
-                      name="gambar_surat"
+                      name="gambar_kk"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>
@@ -318,7 +517,8 @@ const FormBeasiswa = () => {
                     </label>
                     <input
                       type="file"
-                      name="gambar_bpp"
+                      name="gambar_proposalakhir"
+                      onChange={handleFileChange}
                       className="w-full border-b border-stroke bg-transparent pb-3.5 focus:border-waterloo focus:placeholder:text-black focus-visible:outline-none dark:border-strokedark dark:focus:border-manatee dark:focus:placeholder:text-white"
                     />
                   </div>

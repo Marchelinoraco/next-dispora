@@ -1,14 +1,9 @@
-import RelatedPost from "@/components/Blog/RelatedPost";
-import SharePost from "@/components/Blog/SharePost";
 import { Metadata } from "next";
-import Image from "next/image";
-import parse from "html-react-parser";
-import { exampleContent } from "./example";
 import FBeasiswa from "@/components/Form-Beasiswa";
 
 export const metadata: Metadata = {
-  title: "Blog Details Page - Solid SaaS Boilerplate",
-  description: "This is Blog details page for Solid Pro",
+  title: "Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan",
+  description: "DISPORA",
   // other metadata
 };
 

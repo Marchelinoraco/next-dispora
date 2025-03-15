@@ -1,7 +1,7 @@
 export default function Head() {
   return (
     <>
-      <title> Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan</title>
+      <title>Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
