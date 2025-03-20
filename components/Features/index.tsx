@@ -15,7 +15,15 @@ const Feature = () => {
   const getBerita = async () => {
     try {
       const response = await axios.get(`${Config.ipPUBLIC}/berita`);
-      setData(response.data);
+
+      // Urutkan berdasarkan tanggal terbaru
+      const sortedData = response.data.sort(
+        (a: { createdAt: string }, b: { createdAt: string }) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+
+      // Ambil berita terakhir yang di-upload (berita paling atas)
+      setData(sortedData.slice(0, 3));
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +32,13 @@ const Feature = () => {
   const getBeritaOlahraga = async () => {
     try {
       const response = await axios.get(`${Config.ipPUBLIC}/beritaolahraga`);
-      setDataOlahraga(response.data);
+
+      const sortedData = response.data.sort(
+        (a: { createdAt: string }, b: { createdAt: string }) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+
+      setDataOlahraga(sortedData.slice(0, 3));
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +70,7 @@ const Feature = () => {
           <div className="mx-auto mt-15 max-w-c-1280 px-4 md:px-8 xl:mt-20 xl:px-0">
             <h1 className="text-center">KEPEMUDAAN</h1>
             <div className="grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:grid-cols-3 xl:gap-10">
-              {data.slice(0, 3).map((blog, key) => (
+              {data.map((blog, key) => (
                 <BlogItem blog={blog} key={key} />
               ))}
             </div>
@@ -67,7 +81,7 @@ const Feature = () => {
           <div className="mx-auto mt-15 max-w-c-1280 px-4 md:px-8 xl:mt-20 xl:px-0">
             <h1 className="text-center">OLAHRAGA</h1>
             <div className="grid grid-cols-1 gap-7.5 md:grid-cols-2 lg:grid-cols-3 xl:gap-10">
-              {dataOlahraga.slice(0, 3).map((blog, key) => (
+              {dataOlahraga.map((blog, key) => (
                 <BeritaOlahraga blog={blog} key={key} />
               ))}
             </div>

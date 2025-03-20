@@ -101,7 +101,7 @@ const FunFact = () => {
               </h3>
               <p className="text-lg lg:text-para2">28</p>
             </motion.div>
-            <motion.div
+            {/* <motion.div
               variants={{
                 hidden: {
                   opacity: 0,
@@ -122,7 +122,7 @@ const FunFact = () => {
                 Lapangan
               </h3>
               <p className="text-lg lg:text-para2">109.828</p>
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>

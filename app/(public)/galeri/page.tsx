@@ -47,7 +47,9 @@ const NewsPage: React.FC = () => {
     <section className="pb-16 pt-24 md:pb-20 md:pt-28 lg:pb-24 lg:pt-32">
       <div className="container mx-auto">
         <div className="mx-auto max-w-c-1280 px-4 md:px-8 xl:mt-20 xl:px-0">
-          <h1 className="text-center">KEPEMUDAAN</h1>
+          <h1 className="my-10 text-center text-xl font-semibold dark:text-white">
+            GALERI DISPORA
+          </h1>
           <div className="relative h-[180px] w-full overflow-hidden min-[320px]:h-[200px] min-[350px]:h-[220px] min-[400px]:h-[240px] min-[430px]:h-[250px] min-[500px]:h-[270px] min-[580px]:h-[300px] sm:h-[400px] md:h-[450px]">
             {galeris.map((image, index) => (
               <div

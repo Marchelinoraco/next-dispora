@@ -27,16 +27,16 @@ const Hero = () => {
 
             <div className="animate_right hidden bg-transparent md:w-1/2 lg:block">
               <div className="relative 2xl:-mr-7.5">
-                <div className="relative aspect-[850/544] w-full">
+                <div className="relative aspect-[750/544] w-full">
                   <Image
                     className="dark:hidden"
-                    src="/images/hero/bupati-wakil-baru.png"
+                    src="/images/hero/bupati-2025.png"
                     alt="Hero"
                     fill
                   />
                   <Image
                     className="hidden dark:block"
-                    src="/images/hero/bupati-wakil-baru.png"
+                    src="/images/hero/bupati-2025.png"
                     alt="Hero"
                     fill
                   />

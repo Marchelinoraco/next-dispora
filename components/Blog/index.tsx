@@ -22,7 +22,11 @@ const Blog = () => {
   const getGaleri = async () => {
     try {
       const response = await axios.get(`${Config.ipPUBLIC}/galeri`);
-      setGaleri(response.data);
+      const sortedData = response.data.sort(
+        (a: Galeri, b: Galeri) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+      );
+      setGaleri(sortedData);
     } catch (error) {
       console.log(error);
     }
@@ -39,8 +43,8 @@ const Blog = () => {
           <SectionHeader
             headerInfo={{
               title: `Galeri`,
-              subtitle: `Latest photos`,
-              description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. In convallis tortor eros. Donec vitae tortor lacus. Phasellus aliquam ante in maximus.`,
+              subtitle: `Foto Terkini`,
+              description: `Dokumentasi terbaru dari kegiatan Dinas Pemuda Dan Olahraga Kabupaten Minahasa Selatan.`,
             }}
           />
         </div>
@@ -58,7 +62,7 @@ const Blog = () => {
           pagination={{ clickable: true }}
           modules={[FreeMode, Pagination]}
         >
-          {galeris.map((galeri, key) => (
+          {galeris.slice(0, 10).map((galeri, key) => (
             <SwiperSlide key={key}>
               <Link href={`/galeri`}>
                 <div className="group relative mb-20 flex h-80 cursor-pointer flex-col overflow-hidden rounded-xl px-6 py-8 text-white shadow-lg">
